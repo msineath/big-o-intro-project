@@ -25,22 +25,32 @@ const fishies = ['fish', 'fiiiissshhhhhh', 'fiiish', 'fiiiiish', 'fiiiish', 'fff
 function nlognBiggestFish(fishes) {
   // Code goes here ...
   fishes.sort((a,b) => {
-    a.length > b.length
+    return a.length - b.length;
   })
-  return fishes[fishes.length - 1]
+  return fishes[fishes.length - 1];
 }
 
-console.log(nlognBiggestFish(fishies))
+// console.log(nlognBiggestFish(fishies))
 
 function linearBiggestFish(fishes) {
-  // Code goes here ...
+  let longest = fishes[0];
+  fishes.forEach(fish => {
+    if (longest.length < fish.length)
+      longest = fish;
+  })
+  return longest;
 }
-
+// console.log(linearBiggestFish(fishies))
 
 tilesArray = ["up", "right-up", "right", "right-down", "down", "left-down", "left", "left-up"]
 function slowDance(direction, tilesArray) {
-  // Code goes here ...
+  for (let i = 0; i < tilesArray.length; i++) {
+    if (tilesArray[i] === direction)
+      return i;
+  }
 }
+
+// console.log(slowDance('down',tilesArray))
 
 
 tilesObj = {
@@ -54,5 +64,8 @@ tilesObj = {
   "left-up": 7
 }
 function fastDance(direction, tilesObj) {
-  // Code goes here ...
+  if (direction in tilesObj)
+    return tilesObj[direction];
 }
+
+console.log(fastDance('down',tilesObj))
