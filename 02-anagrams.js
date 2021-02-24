@@ -45,23 +45,28 @@ function thirdAnagram(str1, str2) {
   let obj1 = {};
   let obj2 = {};
   let matched = null;
-  str1.forEach(el => {
-    let counter = 0;
-    for (let i = 0; i < str1.length; i++) {
-      if (str1.includes(el))
+  for(let char of str1) {
+    if (!obj1[char]) {
+      let counter = 0;
+      for (let i = 0; i < str1.length; i++) {
+        if (str1.includes(char))
         counter++;
+      }
+      obj1[char] = counter;
     }
-    obj1[el] = counter;
-  })
-  str2.forEach(el => {
-    let counter = 0;
-    for (let i = 0; i < str2.length; i++) {
-      if (str2.includes(el))
+  }
+  for(char of str2) {
+    if (!obj2[char]) {
+      let counter = 0;
+      for (let i = 0; i < str2.length; i++) {
+        if (str2.includes(char))
         counter++;
+      }
+      obj2[char] = counter;
     }
-    obj2[el] = counter;
-  })
-  obj1.forEach(key => {
+  }
+  let keys = Object.keys(obj1)
+  keys.forEach(key => {
     if (obj1[key] !== obj2[key])
       matched = false;
     else
@@ -72,7 +77,7 @@ function thirdAnagram(str1, str2) {
   return true;
 }
 
-console.log(thirdAnagram("gizmo", "sally"));    // => false
+console.log(thirdAnagram("gizmo", "sally"));
 console.log(thirdAnagram("elvis", "lives"))
 
 
