@@ -28,22 +28,52 @@ function secondAnagram(str1, str2) {
   if(str1.length !== str2.length) {
     return false;
   }
-  str1.sort((a, b) => a - b)
-  str2.sort((a, b) => a - b)
+  str1 = str1.split('').sort().join('');
+  str2 = str2.split('').sort().join('');
 
   for(let i = 0; i < str1.length; i++) {
-    if(str1[i] !== str2[i]) 
-    return false
+    if(str1[i] !== str2[i])
+      return false
   }
   return true
 }
 
-console.log(secondAnagram("gizmo", "sally"));    // => false
-console.log(secondAnagram("elvis", "lives"))
+// console.log(secondAnagram("gizmo", "sally"));    // => false
+// console.log(secondAnagram("elvis", "lives"))
 
 function thirdAnagram(str1, str2) {
-  // Code goes here ....
+  let obj1 = {};
+  let obj2 = {};
+  let matched = null;
+  str1.forEach(el => {
+    let counter = 0;
+    for (let i = 0; i < str1.length; i++) {
+      if (str1.includes(el))
+        counter++;
+    }
+    obj1[el] = counter;
+  })
+  str2.forEach(el => {
+    let counter = 0;
+    for (let i = 0; i < str2.length; i++) {
+      if (str2.includes(el))
+        counter++;
+    }
+    obj2[el] = counter;
+  })
+  obj1.forEach(key => {
+    if (obj1[key] !== obj2[key])
+      matched = false;
+    else
+      matched = true;
+  })
+  if (matched === false)
+    return false;
+  return true;
 }
+
+console.log(thirdAnagram("gizmo", "sally"));    // => false
+console.log(thirdAnagram("elvis", "lives"))
 
 
 function fourthAnagram(str1, str2) {
