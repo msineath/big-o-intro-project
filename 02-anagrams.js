@@ -83,4 +83,6 @@ console.log(thirdAnagram("elvis", "lives"))
 
 function fourthAnagram(str1, str2) {
   // Code goes here ....
+  let obj = {};
+  
 }
