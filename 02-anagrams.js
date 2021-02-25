@@ -77,12 +77,34 @@ function thirdAnagram(str1, str2) {
   return true;
 }
 
-console.log(thirdAnagram("gizmo", "sally"));
-console.log(thirdAnagram("elvis", "lives"))
+// console.log(thirdAnagram("gizmo", "sally"));
+// console.log(thirdAnagram("elvis", "lives"))
 
 
 function fourthAnagram(str1, str2) {
   // Code goes here ....
   let obj = {};
-  
+  for(let i = 0; i < str1.length; i++) {
+    if(obj[str1[i]] !== undefined)
+    obj[str1[i]]++
+    else
+    obj[str1[i]] = 1
+
+    if(obj[str2[i]] !== undefined)
+    obj[str2[i]]--
+    else
+    obj[str2[i]] = -1
+  }
+
+  let keys = Object.keys(obj)
+
+  for(let key of keys) {
+    if(obj[key] !== 0)
+    return false
+  }
+  return true
 }
+
+
+console.log(fourthAnagram("gizmo", "sally"));
+console.log(fourthAnagram("elvis", "lives"))
